@@ -1,37 +1,40 @@
-import React, {
-  Component
-} from 'react';
-import Styles from './ScrollText.scss';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './ScrollText.scss';
 
+export default class ScrollText extends Component {
+	constructor() {
+		super();
+		this.state = {
+			film: {}
+		};
+	}
 
-export default ScrollText from Component {
+	componentDidMount() {
+		const range = 7;
+		const num = Math.floor(Math.random() * Math.floor(range)) + 1;
+		const filmUrl = `https://swapi.co/api/films/${num}`;
+		fetch(filmUrl)
+			.then(response => response.json())
+			.then(film => this.setState({ film }))
+			.catch(error => console.log(error));
+	}
 
+	render() {
+		let scrollText = this.state.film.opening_crawl;
+		let movieTitle = this.state.film.title;
+		let movieReleaseDate = this.state.film.release_date;
 
-
-
-  //const...
-  //get movie info functionality
-
-  //const Hello = ({name}) => <div>Hello {name}</div>
-  render() {
-    return ( <
-      div > {
-        scrollText
-      } //may change depending on the film selected
-      {
-        movieTitle
-      } {
-        movieReleasedate
-      } <
-      /div>
-    )
-  };
-
-  ScrollText.propTypes = {
-    scrollText: PropTypes.string,
-    moveiTitle: PropTypes.string,
-    movieReleaseDate: PropTypes.string,
-    //removeIdea: PropTypes.func
-  }
-
+		return (
+			<div>
+				<p>{scrollText}</p>
+				<p>{movieTitle}</p>
+				<p>{movieReleaseDate}</p>
+			</div>
+		);
+	}
 }
+
+ScrollText.propTypes = {
+	film: PropTypes.object
+};
