@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CardContainer.scss';
 import ScrollText from './ScrollText';
-//import ErrorMessage from './ErrorMessage';
+import ErrorMessage from './ErrorMessage';
 import Card from './Card';
 
 export default class CardContainer extends Component {
@@ -12,8 +12,6 @@ export default class CardContainer extends Component {
 			error: true
 		};
 	}
-	//functionality or conitional rendering?
-	//possibly functionality to pick random film
 
 	render() {
 		const cards = this.props.results.map(result => <Card category={this.props.category} info={result} />);
@@ -21,12 +19,15 @@ export default class CardContainer extends Component {
 		return (
 			<main>
 				<ScrollText film={this.props.film} />
-				{/* displayed while other data is loading ? ? goes away and cards are displayed if no favorites.... */}
-				{/* <ErrorMessage /> */}
+				<ErrorMessage status={this.props.error} favorites={this.state.favorites} />
 				{cards}
 			</main>
 		);
 	}
+}
+
+{
+	/* displayed while other data is loading ? ? goes away and cards are displayed if no favorites.... */
 }
 
 // CardContainer.propTypes = {

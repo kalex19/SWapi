@@ -6,7 +6,7 @@ const Header = props => {
 
 	return (
 		<div>
-			<header>{/* <h1> Star Wars </h1> <input> Favorites </input>{' '} */}</header>
+			<h1> Star Wars </h1>
 		</div>
 	);
 };
