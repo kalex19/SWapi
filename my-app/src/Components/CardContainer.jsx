@@ -4,31 +4,26 @@ import ScrollText from './ScrollText';
 import ErrorMessage from './ErrorMessage';
 import Card from './Card';
 
-export default class CardContainer extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			favorites: [],
-			error: true
-		};
+const CardContainer = props => {
+	let errorMessage;
+	const cards = props.results.map(result => <Card category={props.category} info={result} />);
+
+	if (props.count === 0) {
+		errorMessage = <ErrorMessage />;
 	}
 
-	render() {
-		const cards = this.props.results.map(result => <Card category={this.props.category} info={result} />);
+	return (
+		<main>
+			<ScrollText film={props.film} />
+			{errorMessage}
+			{cards}
+		</main>
+	);
+};
 
-		return (
-			<main>
-				<ScrollText film={this.props.film} />
-				<ErrorMessage status={this.props.error} favorites={this.state.favorites} />
-				{cards}
-			</main>
-		);
-	}
-}
+/* displayed while other data is loading ? ? goes away and cards are displayed if no favorites.... */
 
-{
-	/* displayed while other data is loading ? ? goes away and cards are displayed if no favorites.... */
-}
+export default CardContainer;
 
 // CardContainer.propTypes = {
 //   film: PropTypes.object,

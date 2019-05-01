@@ -7,7 +7,7 @@ const ErrorMessage = props => {
 	let favorites;
 	// let loading;
 	console.log('favorites', props.favorites);
-	if (props.favorites.length === 0) {
+	if (props.favoriteCount === 0) {
 		favorites = (
 			<div>
 				<h1>No Favorites Available</h1>

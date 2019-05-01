@@ -7,7 +7,8 @@ import CardContainer from './CardContainer';
 export default class App extends Component {
 	state = {
 		category: null,
-		results: []
+		results: [],
+		favoriteCount: 0
 	};
 	//potentially move all state to comp and change app to func comp
 
@@ -35,9 +36,9 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Header />
+				<Header favoriteCount={this.state.favoriteCount} />
 				<Controls handleClick={this.handleClick} />
-				<CardContainer results={this.state.results} category={this.state.category} />
+				<CardContainer results={this.state.results} category={this.state.category} count={this.state.favoriteCount} />
 			</div>
 		);
 	}
