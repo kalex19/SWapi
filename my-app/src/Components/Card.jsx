@@ -6,11 +6,15 @@ const Card = props => {
 	let planets;
 	let vehicles;
 
+	function handleClick(e){
+		e.preventDefault();
+		console.log('still need to iterate favorite count and save favorites to array plus JSON');
+	}
+
 	if (props.category === 'people') {
 		people = (
 			<div className="cardHeader">
-				<i role="button" className="fab fa-rebel" />
-				{/* <img role="button" src={`${icon}`} alt="" /> */}
+				<button className="fab fa-rebel" onClick={handleClick} />
 				<h2>{props.info.name}</h2>
 				<p>{props.info.homeworld}</p>
 				<p>{props.info.species}</p>
@@ -21,7 +25,7 @@ const Card = props => {
 	if (props.category === 'planets') {
 		planets = (
 			<div className="cardHeader">
-				<i role="button" className="fab fa-rebel" />
+				<button className="fab fa-rebel" onClick={handleClick} />
 				<h2>{props.info.name}</h2>
 				<p>{props.info.terrain}</p>
 				<p>{props.info.population}</p>
@@ -34,7 +38,7 @@ const Card = props => {
 	if (props.category === 'vehicles') {
 		vehicles = (
 			<div className="cardHeader">
-				<i role="button" className="fab fa-rebel" />
+				<button className="fab fa-rebel" onClick={handleClick} />
 				<h2>{props.info.name}</h2>
 				<p>{props.info.model}</p>
 				<p>{props.info.class}</p>
