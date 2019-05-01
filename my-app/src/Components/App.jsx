@@ -32,6 +32,30 @@ export default class App extends Component {
 			.catch(error => console.log(error));
 	};
 
+	// fetchHomeworld() {
+	// 	const url = { homeworld };
+	// 	fetch(url)
+	// 		.then(response => response.json())
+	// 		.then(results => console.log(results))
+	// 		.catch(error => console.log(error));
+	// }
+
+	// fetchHomeworld() {
+	// 	const url = { species };
+	// 	fetch(url)
+	// 		.then(response => response.json())
+	// 		.then(results => console.log(results))
+	// 		.catch(error => console.log(error));
+	// }
+
+	// fetchHomeworld() {
+	// 	const url = { residents };
+	// 	fetch(url)
+	// 		.then(response => response.json())
+	// 		.then(results => console.log(results))
+	// 		.catch(error => console.log(error));
+	// }
+
 	//local storage
 
 	render() {
