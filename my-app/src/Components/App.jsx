@@ -8,7 +8,8 @@ export default class App extends Component {
 	state = {
 		category: null,
 		results: [],
-		favoriteCount: 0
+		favoriteCount: 0,
+		favorites: []
 	};
 	//potentially move all state to comp and change app to func comp
 

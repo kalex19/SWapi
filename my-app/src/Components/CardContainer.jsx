@@ -6,7 +6,7 @@ import Card from './Card';
 
 const CardContainer = props => {
 	let errorMessage;
-	const cards = props.results.map(result => <Card category={props.category} info={result} />);
+	const cards = props.results.map(result => <Card category={props.category} info={result} count={props.count} />);
 
 	if (props.count === 0) {
 		errorMessage = <ErrorMessage />;
