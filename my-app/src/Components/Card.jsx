@@ -2,13 +2,46 @@ import React, { Component } from 'react';
 import './Card.scss';
 
 const Card = props => {
-	//const....
-	//favorite functionality
+	let people;
+	let planets;
+	let vehicles;
+
+	if (props.category === 'people') {
+		people = (
+			<div className="cardHeader">
+				<h2>{props.info.name}</h2>
+				<p>{props.info.homeworld}</p>
+				<p>{props.info.species}</p>
+			</div>
+		);
+	}
+
+	if (props.category === 'planets') {
+		planets = (
+			<div className="cardHeader">
+				<h2>{props.info.name}</h2>
+				<p>{props.info.terrain}</p>
+				<p>{props.info.population}</p>
+				<p>{props.info.climate}</p>
+				<p>{props.info.residents}</p>
+			</div>
+		);
+	}
+
+	if (props.category === 'vehicles') {
+		vehicles = (
+			<div className="cardHeader">
+				<h2>{props.info.name}</h2>
+				<p>{props.info.model}</p>
+				<p>{props.info.class}</p>
+				<p>{props.info.passengers}</p>
+			</div>
+		);
+	}
 
 	return (
-		//condoitional rendering depending on what props are passing through
-		<div className="cardHeader">
-			<h2>{props.info.name}</h2>
+		<div>
+			{people} {planets} {vehicles}
 		</div>
 	);
 };

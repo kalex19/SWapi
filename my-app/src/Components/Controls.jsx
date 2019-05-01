@@ -2,21 +2,6 @@ import React, { Component } from 'react';
 import './Controls.scss';
 
 const Controls = props => {
-	// handlePeopleClick = e => {
-	// 	e.preventDefault();
-	// 	this.props.peopleBtn();
-	// };
-
-	// handlePlanetClick = e => {
-	// 	e.preventDefault();
-	// 	this.props.planetsBtn();
-	// };
-
-	// handleVehicleClick = e => {
-	// 	e.preventDefault();
-	// 	this.props.vehiclesBtn();
-	// };
-
 	//filter functionality
 
 	return (

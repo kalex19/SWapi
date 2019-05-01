@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-//import Header from './Header';
+import Header from './Header';
 import Controls from './Controls';
 import CardContainer from './CardContainer';
 
@@ -22,7 +22,11 @@ export default class App extends Component {
 		const resultsUrl = `https://swapi.co/api/${results}`;
 		fetch(resultsUrl)
 			.then(response => response.json())
-			.then(results => this.setState({ results: results.results }))
+			.then(results =>
+				this.setState({ results: results.results }, () => {
+					console.log(this.state.results);
+				})
+			)
 			.catch(error => console.log(error));
 	};
 
@@ -31,13 +35,9 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				{/* <Header /> */}
+				<Header />
 				<Controls handleClick={this.handleClick} />
-				<CardContainer
-					results={this.state.results}
-					// favorites={this.favorites}
-					// error={this.error}
-				/>
+				<CardContainer results={this.state.results} category={this.state.category} />
 			</div>
 		);
 	}

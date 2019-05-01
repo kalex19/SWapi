@@ -16,7 +16,7 @@ export default class CardContainer extends Component {
 	//possibly functionality to pick random film
 
 	render() {
-		const cards = this.props.results.map(result => <Card info={result} />);
+		const cards = this.props.results.map(result => <Card category={this.props.category} info={result} />);
 
 		return (
 			<main>
