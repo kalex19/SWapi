@@ -15,7 +15,7 @@ const Card = props => {
 		people = (
 			<div className="cardHeader">
 				<button className="fab fa-rebel inactive" onClick={handleClick} />
-				<h2>{props.info.name}</h2>
+				<h2>{props.people.name}</h2>
 				{/* <p>{props.info.homeworld}</p>
 				<p>{props.info.species}</p> */}
 				{/* <p>{props.info.population}</p> needs to be from planet homeworld dataset */}
@@ -27,10 +27,10 @@ const Card = props => {
 		planets = (
 			<div className="cardHeader">
 				<button className="fab fa-rebel inactive" onClick={handleClick} />
-				<h2>{props.info.name}</h2>
-				<p>{props.info.terrain}</p>
-				<p>{props.info.population}</p>
-				<p>{props.info.climate}</p>
+				<h2>{props.planets.name}</h2>
+				<p>{props.planets.terrain}</p>
+				<p>{props.planets.population}</p>
+				<p>{props.planets.climate}</p>
 				{/* <p>{props.info.residents}</p> */}
 			</div>
 		);
@@ -40,10 +40,10 @@ const Card = props => {
 		vehicles = (
 			<div className="cardHeader">
 				<button className="fab fa-rebel inactive" onClick={handleClick} />
-				<h2>{props.info.name}</h2>
-				<p>{props.info.model}</p>
-				<p>{props.info.vehicle_class}</p>
-				<p>{props.info.passengers}</p>
+				<h2>{props.vehicles.name}</h2>
+				<p>{props.vehicles.model}</p>
+				<p>{props.vehicles.vehicle_class}</p>
+				<p>{props.vehicles.passengers}</p>
 			</div>
 		);
 	}
