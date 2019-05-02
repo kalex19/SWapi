@@ -7,11 +7,14 @@ import CardContainer from './CardContainer';
 export default class App extends Component {
 	state = {
 		category: null,
-		results: [],
+		people: [],
+		planets: [],
+		vehicles: [],
 		favoriteCount: 0,
 		favorites: []
 	};
 	//potentially move all state to comp and change app to func comp
+	//fetch data for each p,p,v and then pass down arrays and manipulate arrays on card to get correct data, no need to fetch dynamically.
 
 	handleClick = e => {
 		this.setState({ category: e.target.name }, () => {
