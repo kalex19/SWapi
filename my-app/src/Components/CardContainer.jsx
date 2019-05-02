@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './CardContainer.scss';
+import PropTypes from 'prop-types';
 import ScrollText from './ScrollText';
 import ErrorMessage from './ErrorMessage';
 import Card from './Card';
@@ -33,10 +34,10 @@ const CardContainer = props => {
 
 export default CardContainer;
 
-// CardContainer.propTypes = {
-//   film: PropTypes.object,
-//   people: PropTypes.array,
-//   planets: PropTypes.array,
-//   vehicles: PropTypes.array,
-//   //removeIdea: PropTypes.func
-// }
+CardContainer.propTypes = {
+	film: PropTypes.object,
+	people: PropTypes.array,
+	planets: PropTypes.array,
+	vehicles: PropTypes.array,
+	category: PropTypes.string
+};

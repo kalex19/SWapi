@@ -3,6 +3,9 @@ import './App.scss';
 import Header from './Header';
 import Controls from './Controls';
 import CardContainer from './CardContainer';
+import { fetchPeople } from './apiCalls';
+import { fetchPlanets } from './apiCalls';
+import { fetchVehicles } from './apiCalls';
 
 export default class App extends Component {
 	state = {
@@ -13,8 +16,6 @@ export default class App extends Component {
 		favoriteCount: 0,
 		favorites: []
 	};
-	//potentially move all state to comp and change app to func comp
-	//fetch data for each p,p,v and then pass down arrays and manipulate arrays on card to get correct data, no need to fetch dynamically.
 
 	handleClick = e => {
 		this.setState({ category: e.target.name }, () => {
@@ -22,53 +23,57 @@ export default class App extends Component {
 		});
 	};
 
+	fetchHomeworld = people => {
+		let unresolved = people.map(person => {
+			return fetch(person.homeworld)
+				.then(response => response.json())
+				.then(homeworld => ({ name: person.name, homeworld: homeworld.name, population: homeworld.population }))
+				.catch(error => 'error in fetching homeworld');
+		});
+		return Promise.all(unresolved);
+	};
+
+	fetchSpecies = people => {
+		let unresolved = people.map(person => {
+			return fetch(person.species)
+				.then(response => response.json())
+				.then(species => ({ ...person, species: species.name }))
+				.catch(error => 'error in fetching species');
+		});
+		return Promise.all(unresolved);
+	};
+
+	fetchResidents = planets => {
+		let unresolved = planets.map(planet => {
+			return fetch(planets.residents)
+				.then(response => response.json())
+				.then(residents => ({
+					name: planet.name,
+					terrain: planet.terrain,
+					population: planet.population,
+					climate: planet.climate,
+					residents: residents.resident
+				}))
+				.catch(error => 'error in fetching residents');
+		});
+		return Promise.all(unresolved);
+	};
+
 	fetchResults() {
-		if (this.state.category === 'People') {
-			this.fetchPeople();
+		if (this.state.category === 'people') {
+			fetchPeople()
+				.then(response => this.fetchHomeworld(response.results))
+				.then(people => this.fetchSpecies(people))
+				.then(people => this.setState({ people }));
 		}
-		if (this.state.category === 'Planets') {
-			this.fetchPlanets();
+		if (this.state.category === 'planets') {
+			fetchPlanets().then(results => this.fetchResidents(results.results)).then(planets => this.setState({ planets }));
 		}
-		if (this.state.category === 'Vehicles') {
-			this.fetchVehicles();
+		if (this.state.category === 'vehicles') {
+			fetchVehicles().then(results => this.setState({ vehicles: results.results }));
 		}
 	}
 
-	fetchPeople = () => {
-		const url = `https://swapi.co/api/people`;
-		fetch(url)
-			.then(response => response.json())
-			.then(results =>
-				this.setState({ people: results.people }, () => {
-					console.log(this.state.people);
-				})
-			)
-			.catch(error => console.log(error));
-	};
-
-	fetchPlanets = () => {
-		const url = `https://swapi.co/api/planet`;
-		fetch(url)
-			.then(response => response.json())
-			.then(results =>
-				this.setState({ planets: results.planet }, () => {
-					console.log(this.state.planet);
-				})
-			)
-			.catch(error => console.log(error));
-	};
-
-	fetchVehicles = () => {
-		const url = `https://swapi.co/api/vehicles`;
-		fetch(url)
-			.then(response => response.json())
-			.then(results =>
-				this.setState({ vehicles: results.vehicles }, () => {
-					console.log(this.state.vehicles);
-				})
-			)
-			.catch(error => console.log(error));
-	};
 	//local storage
 
 	render() {
@@ -87,6 +92,4 @@ export default class App extends Component {
 			</div>
 		);
 	}
-
-	//proptypes
 }
