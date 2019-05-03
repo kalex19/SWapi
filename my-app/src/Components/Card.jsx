@@ -6,10 +6,6 @@ const Card = props => {
 	let people;
 	let planets;
 	let vehicles;
-	let homeworld;
-	let species;
-	let population;
-	let residents;
 
 	function handleClick(e){
 		e.preventDefault();
@@ -21,9 +17,9 @@ const Card = props => {
 			<div className="cardHeader">
 				<button className="fab fa-rebel inactive" onClick={handleClick} />
 				<h2>{props.people.name}</h2>
-				<p>{homeworld}</p>
-				<p>{species}</p>
-				<p>{population}</p>
+				<p>{props.people.homeworld}</p>
+				<p>{props.people.species}</p>
+				<p>{props.people.population}</p>
 			</div>
 		);
 	}
@@ -36,7 +32,7 @@ const Card = props => {
 				<p>{props.planets.terrain}</p>
 				<p>{props.planets.population}</p>
 				<p>{props.planets.climate}</p>
-				<p>{residents}</p>
+				<p>{props.planets.residents}</p>
 			</div>
 		);
 	}

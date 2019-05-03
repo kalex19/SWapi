@@ -73,20 +73,36 @@ export default class App extends Component {
 		return Promise.all(unresolved);
 	};
 
-	fetchResults() {
-		if (this.state.category === 'people') {
+	cleanVehicles = vehicles => {
+		let unresolved = vehicles.map(vehicle => ({
+			name: vehicle.name,
+			model: vehicle.model,
+			class: vehicle.vehicle_class,
+			passengers: vehicle.passengers
+		}));
+		return unresolved;
+	};
+
+	fetchResults = () => {
+		const { category } = this.state;
+
+		if (category === 'people') {
 			fetchPeople()
 				.then(response => this.fetchHomeworld(response.results))
 				.then(response => this.fetchSpecies(response))
 				.then(people => this.setState({ people }));
 		}
-		if (this.state.category === 'planets') {
-			fetchPlanets().then(results => this.fetchResidents(results.results)).then(planets => this.setState({ planets }));
+		if (category === 'planets') {
+			fetchPlanets()
+				.then(response => this.fetchResidents(response.results))
+				.then(planets => this.setState({ planets }));
 		}
-		if (this.state.category === 'vehicles') {
-			fetchVehicles().then(results => this.setState({ vehicles: results.results }));
+		if (category === 'vehicles') {
+			fetchVehicles()
+				.then(response => this.cleanVehicles(response.results))
+				.then(vehicles => this.setState({ vehicles }));
 		}
-	}
+	};
 
 	//local storage
 

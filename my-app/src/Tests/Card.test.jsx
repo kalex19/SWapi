@@ -1,7 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ReactDOM from 'react-dom';
-import Card from '../src/Card';
+import Card from '../Components/Card';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('Card', () => {
 	let wrapper;
@@ -9,9 +13,7 @@ describe('Card', () => {
 	let mockHandleClick;
 
 	beforeEach(() => {
-		wrapper = shallow(() => {
-			<Card />;
-		});
+		wrapper = shallow(<Card />);
 		mockEvent(() => {
 			preventDefault: jest.fn();
 		});
