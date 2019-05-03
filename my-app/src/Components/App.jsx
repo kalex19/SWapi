@@ -27,18 +27,23 @@ export default class App extends Component {
 		let unresolved = people.map(person => {
 			return fetch(person.homeworld)
 				.then(response => response.json())
-				.then(homeworld => ({ name: person.name, homeworld: homeworld.name, population: homeworld.population }))
-				.catch(error => 'error in fetching homeworld');
+				.then(homeworld => ({
+					name: person.name,
+					homeworld: homeworld.name,
+					population: homeworld.population,
+					species: person.species
+				}))
+				.catch(error => console.log(error));
 		});
 		return Promise.all(unresolved);
 	};
 
-	fetchSpecies = people => {
-		let unresolved = people.map(person => {
+	fetchSpecies = persons => {
+		let unresolved = persons.map(person => {
 			return fetch(person.species)
 				.then(response => response.json())
 				.then(species => ({ ...person, species: species.name }))
-				.catch(error => 'error in fetching species');
+				.catch(error => console.log(error));
 		});
 		return Promise.all(unresolved);
 	};
@@ -53,7 +58,7 @@ export default class App extends Component {
 					climate: planet.climate,
 					residents: residents.join(', ')
 				}))
-				.catch(error => 'error in fetching residents urls');
+				.catch(error => console.log(error));
 		});
 		return Promise.all(unresolved);
 	};
@@ -63,7 +68,7 @@ export default class App extends Component {
 			return fetch(resident)
 				.then(response => response.json())
 				.then(resident => resident.name)
-				.catch(error => 'error in fetching residents urls');
+				.catch(error => console.log.log(error));
 		});
 		return Promise.all(unresolved);
 	};
@@ -72,7 +77,7 @@ export default class App extends Component {
 		if (this.state.category === 'people') {
 			fetchPeople()
 				.then(response => this.fetchHomeworld(response.results))
-				.then(people => this.fetchSpecies(people))
+				.then(response => this.fetchSpecies(response))
 				.then(people => this.setState({ people }));
 		}
 		if (this.state.category === 'planets') {
