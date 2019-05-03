@@ -45,16 +45,25 @@ export default class App extends Component {
 
 	fetchResidents = planets => {
 		let unresolved = planets.map(planet => {
-			return fetch(planets.residents)
-				.then(response => response.json())
+			return this.fetchResidentName(planet.residents)
 				.then(residents => ({
 					name: planet.name,
 					terrain: planet.terrain,
 					population: planet.population,
 					climate: planet.climate,
-					residents: residents.resident
+					residents: residents.join(', ')
 				}))
-				.catch(error => 'error in fetching residents');
+				.catch(error => 'error in fetching residents urls');
+		});
+		return Promise.all(unresolved);
+	};
+
+	fetchResidentName = residents => {
+		let unresolved = residents.map(resident => {
+			return fetch(resident)
+				.then(response => response.json())
+				.then(resident => resident.name)
+				.catch(error => 'error in fetching residents urls');
 		});
 		return Promise.all(unresolved);
 	};
