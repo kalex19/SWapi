@@ -25,7 +25,7 @@ const Card = props => {
 	function personCard(){
 		person = people.map(person => {
 			return (
-				<div className="cardHeader">
+				<div className="cardHeader" key={person.name}>
 					<button className="fab fa-rebel inactive" onClick={props.favoritesBtn} />
 					<h2>{person.name}</h2>
 					<p>{person.homeworld}</p>
@@ -39,7 +39,7 @@ const Card = props => {
 	function planetsCard(){
 		planet = planets.map(planet => {
 			return (
-				<div className="cardHeader">
+				<div className="cardHeader" key={planet.name}>
 					<button className="fab fa-rebel inactive" onClick={props.favoritesBtn} />
 					<h2>{planet.name}</h2>
 					<p>{planet.terrain}</p>
@@ -54,7 +54,7 @@ const Card = props => {
 	function vehiclesCard(){
 		vehicle = vehicles.map(vehicle => {
 			return (
-				<div className="cardHeader">
+				<div className="cardHeader" key={vehicle.name}>
 					<button className="fab fa-rebel inactive" onClick={props.favoritesBtn} />
 					<h2>{vehicle.name}</h2>
 					<p>{vehicle.model}</p>

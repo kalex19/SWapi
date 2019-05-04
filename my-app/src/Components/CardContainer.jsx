@@ -9,7 +9,7 @@ const CardContainer = props => {
 	function handleFavBtn(e){
 		e.preventDefault();
 		console.log('still need to iterate favorite count and save favorites to array plus JSON and active class');
-		props.favoritesBtn(e);
+		props.favoriteBtn(e.target.parentNode);
 	}
 
 	let errorMessage;
@@ -24,14 +24,14 @@ const CardContainer = props => {
 		/>
 	);
 
-	if (props.count === 0) {
+	if (props.category === null && props.count === 0) {
 		errorMessage = <ErrorMessage />;
 	}
 
 	return (
 		<main>
-			<ScrollText film={props.film} />
 			{errorMessage}
+			<ScrollText film={props.film} />
 			{cards}
 		</main>
 	);

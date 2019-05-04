@@ -105,7 +105,7 @@ export default class App extends Component {
 
 	favoritesBtn = () => {
 		this.setState = {
-			favoriteCount: this.state.favoriteCount + 1
+			favoriteCount: this.state.favorites.length
 		};
 	};
 
@@ -120,6 +120,7 @@ export default class App extends Component {
 					results={this.state.results}
 					category={this.state.category}
 					count={this.state.favoriteCount}
+					favoriteBtn={this.favoriteBtn}
 					people={this.state.people}
 					planets={this.state.planets}
 					vehicles={this.state.vehicles}
