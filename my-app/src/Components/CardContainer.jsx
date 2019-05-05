@@ -6,12 +6,6 @@ import ErrorMessage from './ErrorMessage';
 import Card from './Card';
 
 const CardContainer = props => {
-	function handleFavBtn(e){
-		e.preventDefault();
-		console.log('still need to iterate favorite count and save favorites to array plus JSON and active class');
-		props.favoriteBtn(e.target.parentNode);
-	}
-
 	let errorMessage;
 	const cards = (
 		<Card
@@ -20,7 +14,7 @@ const CardContainer = props => {
 			planets={props.planets}
 			vehicles={props.vehicles}
 			count={props.count}
-			favoritesBtn={handleFavBtn}
+			favoritesBtn={props.favoritesBtn}
 		/>
 	);
 

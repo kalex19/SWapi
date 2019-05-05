@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import './Header.scss';
 
 const Header = props => {
-	//favorite functionality
-
 	return (
-		<div>
-			<h1> Star Wars </h1>
-			<p role="button">View {props.favoriteCount} Favorites</p>
+		<div className="header">
+			<h1 className="title"> SWapi-Box </h1>
+			<p className="favBtn" role="button">
+				View {props.favoriteCount} Favorites
+			</p>
 		</div>
 	);
 };

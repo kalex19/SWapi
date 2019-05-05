@@ -5,7 +5,7 @@ const ErrorMessage = props => {
 	// let loading;
 
 	return (
-		<div>
+		<div className="errorContainer">
 			<h1>Please Select A Category</h1>
 			<p>No Favorites Available</p>
 		</div>

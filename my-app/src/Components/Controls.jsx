@@ -5,7 +5,7 @@ const Controls = props => {
 	//filter functionality
 
 	return (
-		<div>
+		<div className="controls">
 			<input name="people" value="People" type="button" onClick={props.handleClick} />
 			<input name="planets" value="Planets" type="button" onClick={props.handleClick} />
 			<input name="vehicles" value="Vehicles" type="button" onClick={props.handleClick} />

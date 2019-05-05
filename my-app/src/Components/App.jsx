@@ -103,10 +103,12 @@ export default class App extends Component {
 		}
 	};
 
-	favoritesBtn = () => {
-		this.setState = {
-			favoriteCount: this.state.favorites.length
-		};
+	favoritesBtn = e => {
+		if (e) {
+			this.setState = {
+				favoriteCount: this.state.favoriteCount + 1
+			};
+		}
 	};
 
 	//local storage
@@ -120,7 +122,7 @@ export default class App extends Component {
 					results={this.state.results}
 					category={this.state.category}
 					count={this.state.favoriteCount}
-					favoriteBtn={this.favoriteBtn}
+					favoritesBtn={this.favoritesBtn}
 					people={this.state.people}
 					planets={this.state.planets}
 					vehicles={this.state.vehicles}
