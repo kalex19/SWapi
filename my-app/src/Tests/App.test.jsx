@@ -76,7 +76,7 @@ describe('HomeWorld', () => {
 		mockHomeWorld = {
 			name: 'person.name',
 			homeworld: 'homeworld.name',
-			population: 'homeworld.population',
+			population: 200,
 			species: 'person.species'
 		};
 	});
@@ -114,7 +114,7 @@ describe('Species', () => {
 		mockSpecies = {
 			name: 'person.name',
 			homeworld: 'homeworld.name',
-			population: 'homeworld.population',
+			population: 200,
 			species: 'person.species'
 		};
 	});
@@ -152,7 +152,7 @@ describe('Residents', () => {
 		mockResidents = {
 			name: 'planet.name',
 			terrain: 'planet.terrain',
-			population: 'planet.population',
+			population: 200,
 			climate: 'planet.climate',
 			residents: 'residents'
 		};
@@ -226,6 +226,9 @@ describe('Results', () => {
 	let mockFetchResidents;
 	let mockFetchVehicles;
 	let mockCleanVehicles;
+	let mockPeople;
+	let mockPlanets;
+	let mockVehicles;
 
 	beforeEach(() => {
 		mockCleanVehicles = jest.fn();
@@ -235,25 +238,85 @@ describe('Results', () => {
 		mockFetchResidents = jest.fn();
 		mockFetchVehicles = jest.fn();
 		mockCleanVehicles = jest.fn();
+		mockPeople = [
+			{
+				name: 'person.name',
+				homeworld: 'homeworld.name',
+				population: 200,
+				species: 'person.species'
+			}
+		];
+		mockPlanets = [
+			{
+				name: 'planet.name',
+				terrain: 'planet.terrain',
+				population: 200,
+				climate: 'planet.climate',
+				residents: 'residents'
+			}
+		];
+		mockVehicles = [
+			{
+				name: 'vehicle.name',
+				model: 'vehicle.model',
+				class: 'vehicle.vehicle_class',
+				passengers: 'vehicle.passengers'
+			}
+		];
 	});
 
-	it('should call fetchPeople ', () => {});
+	it('should call fetchPeople ', async () => {
+		await expect(mockFetchPeople).toHaveBeenCalled();
+	});
 
-	it('should call fetchHomeWorld ', () => {});
+	it('should call fetchHomeWorld ', async () => {
+		await expect(mockFetchHomeworld).toHaveBeenCalled();
+	});
 
-	it('should call fetchSpecies ', () => {});
+	it('should call fetchSpecies ', async () => {
+		await expect(mockFetchSpecies).toHaveBeenCalled();
+	});
 
-	it('should set state ', () => {});
+	it('sets the  state', async () => {
+		await expect(wrapper.state('vehicles')).toEqual(mockPeople);
+	});
 
-	it('should call fetchPlanets ', () => {});
+	it('sets the error in state if the fetch fails', async () => {
+		window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')));
+		await expect(wrapper.state('people')).toEqual(mockPeople);
+	});
 
-	it('should call fetchResidents ', () => {});
+	it('should call fetchPlanets ', async () => {
+		await expect(mockFetchPlanets).toHaveBeenCalled();
+	});
 
-	it('should set state ', () => {});
+	it('should call fetchResidents ', async () => {
+		await expect(mockFetchResidents).toHaveBeenCalled();
+	});
 
-	it('should call fetchVehicles ', () => {});
+	it('sets the  state', async () => {
+		await expect(wrapper.state('vehicles')).toEqual(mockPlanets);
+	});
 
-	it('should scall cleanVehicles ', () => {});
+	it('sets the error in state if the fetch fails', async () => {
+		window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')));
+		await expect(wrapper.state('planets')).toEqual(mockPlanets);
+	});
 
-	it('should set state ', () => {});
+	it('should call fetchVehicles ', async () => {
+		await expect(mockFetchVehicles).toHaveBeenCalled();
+	});
+
+	it('should scall cleanVehicles ', () => {
+		expect(mockCleanVehicles).toHaveBeenCalled();
+	});
+
+	it('sets the  state', async () => {
+		await expect(wrapper.state('vehicles')).toEqual(mockVehicles);
+	});
+
+	it('sets the error in state if the fetch fails', async () => {
+		window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')));
+		await expect(wrapper.state('vehicles')).toEqual(mockVehicles);
+	});
 });
