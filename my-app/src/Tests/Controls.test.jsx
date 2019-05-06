@@ -1,7 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ReactDOM from 'react-dom';
-import Controls from '../src/Controls';
+import Controls from '../Components/Controls';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
 
 describe('Controls', () => {
 	let wrapper;

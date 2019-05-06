@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Card.scss';
 
 const Card = props => {
@@ -16,9 +17,9 @@ const Card = props => {
 			<div className="cardHeader">
 				<button className="fab fa-rebel inactive" onClick={handleClick} />
 				<h2>{props.people.name}</h2>
-				{/* <p>{props.info.homeworld}</p>
-				<p>{props.info.species}</p> */}
-				{/* <p>{props.info.population}</p> needs to be from planet homeworld dataset */}
+				<p>{props.people.homeworld}</p>
+				<p>{props.people.species}</p>
+				<p>{props.people.population}</p>
 			</div>
 		);
 	}
@@ -31,7 +32,7 @@ const Card = props => {
 				<p>{props.planets.terrain}</p>
 				<p>{props.planets.population}</p>
 				<p>{props.planets.climate}</p>
-				{/* <p>{props.info.residents}</p> */}
+				<p>{props.planets.residents}</p>
 			</div>
 		);
 	}
@@ -55,11 +56,19 @@ const Card = props => {
 	);
 };
 
-// Card.propTypes = {
-// 	title: PropTypes.string,
-// 	body: PropTypes.string,
-// 	id: PropTypes.number,
-// 	removeIdea: PropTypes.func
-// };
-
 export default Card;
+
+// Card.propTypes = {
+// 	people.name: PropTypes.string,
+// 	people.homeworld: PropTypes.string,
+// 	people.species: PropTypes.string,
+// 	people.population: PropTypes.string,
+// 	planets.name: PropTypes.string,
+// 	planets.terrain: PropTypes.string,
+// 	planets.population: PropTypes.string,
+// 	planets.climate: PropTypes.string,
+// 	vehicles.name: PropTypes.string,
+// 	vehicles.model: PropTypes.string,
+// 	vehicles.vehucle_class: PropTypes.string,
+// 	vehicle.passengers: PropTypes.string
+// };

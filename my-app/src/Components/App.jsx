@@ -3,6 +3,9 @@ import './App.scss';
 import Header from './Header';
 import Controls from './Controls';
 import CardContainer from './CardContainer';
+import { fetchPeople } from './apiCalls';
+import { fetchPlanets } from './apiCalls';
+import { fetchVehicles } from './apiCalls';
 
 export default class App extends Component {
 	state = {
@@ -13,8 +16,6 @@ export default class App extends Component {
 		favoriteCount: 0,
 		favorites: []
 	};
-	//potentially move all state to comp and change app to func comp
-	//fetch data for each p,p,v and then pass down arrays and manipulate arrays on card to get correct data, no need to fetch dynamically.
 
 	handleClick = e => {
 		this.setState({ category: e.target.name }, () => {
@@ -22,53 +23,87 @@ export default class App extends Component {
 		});
 	};
 
-	fetchResults() {
-		if (this.state.category === 'People') {
-			this.fetchPeople();
-		}
-		if (this.state.category === 'Planets') {
-			this.fetchPlanets();
-		}
-		if (this.state.category === 'Vehicles') {
-			this.fetchVehicles();
-		}
-	}
-
-	fetchPeople = () => {
-		const url = `https://swapi.co/api/people`;
-		fetch(url)
-			.then(response => response.json())
-			.then(results =>
-				this.setState({ people: results.people }, () => {
-					console.log(this.state.people);
-				})
-			)
-			.catch(error => console.log(error));
+	fetchHomeworld = people => {
+		let unresolved = people.map(person => {
+			return fetch(person.homeworld)
+				.then(response => response.json())
+				.then(homeworld => ({
+					name: person.name,
+					homeworld: homeworld.name,
+					population: homeworld.population,
+					species: person.species
+				}))
+				.catch(error => console.log(error));
+		});
+		return Promise.all(unresolved);
 	};
 
-	fetchPlanets = () => {
-		const url = `https://swapi.co/api/planet`;
-		fetch(url)
-			.then(response => response.json())
-			.then(results =>
-				this.setState({ planets: results.planet }, () => {
-					console.log(this.state.planet);
-				})
-			)
-			.catch(error => console.log(error));
+	fetchSpecies = persons => {
+		let unresolved = persons.map(person => {
+			return fetch(person.species)
+				.then(response => response.json())
+				.then(species => ({ ...person, species: species.name }))
+				.catch(error => console.log(error));
+		});
+		return Promise.all(unresolved);
 	};
 
-	fetchVehicles = () => {
-		const url = `https://swapi.co/api/vehicles`;
-		fetch(url)
-			.then(response => response.json())
-			.then(results =>
-				this.setState({ vehicles: results.vehicles }, () => {
-					console.log(this.state.vehicles);
-				})
-			)
-			.catch(error => console.log(error));
+	fetchResidents = planets => {
+		let unresolved = planets.map(planet => {
+			return this.fetchResidentName(planet.residents)
+				.then(residents => ({
+					name: planet.name,
+					terrain: planet.terrain,
+					population: planet.population,
+					climate: planet.climate,
+					residents: residents.join(', ')
+				}))
+				.catch(error => console.log(error));
+		});
+		return Promise.all(unresolved);
 	};
+
+	fetchResidentName = residents => {
+		let unresolved = residents.map(resident => {
+			return fetch(resident)
+				.then(response => response.json())
+				.then(resident => resident.name)
+				.catch(error => console.log.log(error));
+		});
+		return Promise.all(unresolved);
+	};
+
+	cleanVehicles = vehicles => {
+		let unresolved = vehicles.map(vehicle => ({
+			name: vehicle.name,
+			model: vehicle.model,
+			class: vehicle.vehicle_class,
+			passengers: vehicle.passengers
+		}));
+		return unresolved;
+	};
+
+	fetchResults = () => {
+		const { category } = this.state;
+
+		if (category === 'people') {
+			fetchPeople()
+				.then(response => this.fetchHomeworld(response.results))
+				.then(response => this.fetchSpecies(response))
+				.then(people => this.setState({ people }));
+		}
+		if (category === 'planets') {
+			fetchPlanets()
+				.then(response => this.fetchResidents(response.results))
+				.then(planets => this.setState({ planets }));
+		}
+		if (category === 'vehicles') {
+			fetchVehicles()
+				.then(response => this.cleanVehicles(response.results))
+				.then(vehicles => this.setState({ vehicles }));
+		}
+	};
+
 	//local storage
 
 	render() {
@@ -87,6 +122,4 @@ export default class App extends Component {
 			</div>
 		);
 	}
-
-	//proptypes
 }

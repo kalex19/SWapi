@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Header.scss';
 
 const Header = props => {
@@ -11,6 +12,9 @@ const Header = props => {
 		</div>
 	);
 };
-//proptypes
+
+Header.propTypes = {
+	favoriteCount: PropTypes.number
+};
 
 export default Header;
