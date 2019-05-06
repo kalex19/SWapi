@@ -1,7 +1,35 @@
 @import '../variables.scss';
 
-.active {
-  color: red;
+.cardContainer {
+  display: inline;
 }
 
-//for favorties button once pressed
+.cardHeader {
+  display: inline-grid;
+  margin: 2%;
+  border: solid 4px #ffd701;
+  padding: 2%;
+  background-color: black;
+  color: white;
+  width: 18%;
+  height: 480px;
+}
+
+.cardHeader button {
+  height: 20px;
+}
+
+.cardHeader h2 {
+  padding: 2%;
+  margin: 3%;
+}
+
+.cardHeader p {
+  padding: 2%;
+  margin: 3%;
+}
+
+
+.active:hover {
+  background-color: gold;
+}

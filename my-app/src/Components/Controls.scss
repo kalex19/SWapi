@@ -1,1 +1,19 @@
 @import '../variables.scss';
+
+.controls {
+  align-items: center;
+  margin-left: 20%;
+}
+
+.controls input {
+  margin-left: 4%;
+  padding: 1%;
+  background-color: gold;
+  color: #000;
+  border: 2px white solid;
+  height: 50px;
+  width: 250px;
+  margin-top: 2%;
+  font-size: 2em;
+  opacity: 0.8;
+}

@@ -85,7 +85,6 @@ export default class App extends Component {
 
 	fetchResults = () => {
 		const { category } = this.state;
-
 		if (category === 'people') {
 			fetchPeople()
 				.then(response => this.fetchHomeworld(response.results))
@@ -104,6 +103,14 @@ export default class App extends Component {
 		}
 	};
 
+	favoritesBtn = e => {
+		if (e) {
+			this.setState = {
+				favoriteCount: this.state.favoriteCount + 1
+			};
+		}
+	};
+
 	//local storage
 
 	render() {
@@ -115,6 +122,7 @@ export default class App extends Component {
 					results={this.state.results}
 					category={this.state.category}
 					count={this.state.favoriteCount}
+					favoritesBtn={this.favoritesBtn}
 					people={this.state.people}
 					planets={this.state.planets}
 					vehicles={this.state.vehicles}

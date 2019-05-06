@@ -3,55 +3,71 @@ import PropTypes from 'prop-types';
 import './Card.scss';
 
 const Card = props => {
-	let people;
-	let planets;
-	let vehicles;
-
-	function handleClick(e){
-		e.preventDefault();
-		console.log('still need to iterate favorite count and save favorites to array plus JSON and active class');
-	}
+	let person;
+	let planet;
+	let vehicle;
+	let people = props.people;
+	let planets = props.planets;
+	let vehicles = props.vehicles;
 
 	if (props.category === 'people') {
-		people = (
-			<div className="cardHeader">
-				<button className="fab fa-rebel inactive" onClick={handleClick} />
-				<h2>{props.people.name}</h2>
-				<p>{props.people.homeworld}</p>
-				<p>{props.people.species}</p>
-				<p>{props.people.population}</p>
-			</div>
-		);
+		personCard();
 	}
 
 	if (props.category === 'planets') {
-		planets = (
-			<div className="cardHeader">
-				<button className="fab fa-rebel inactive" onClick={handleClick} />
-				<h2>{props.planets.name}</h2>
-				<p>{props.planets.terrain}</p>
-				<p>{props.planets.population}</p>
-				<p>{props.planets.climate}</p>
-				<p>{props.planets.residents}</p>
-			</div>
-		);
+		planetsCard();
 	}
 
 	if (props.category === 'vehicles') {
-		vehicles = (
-			<div className="cardHeader">
-				<button className="fab fa-rebel inactive" onClick={handleClick} />
-				<h2>{props.vehicles.name}</h2>
-				<p>{props.vehicles.model}</p>
-				<p>{props.vehicles.vehicle_class}</p>
-				<p>{props.vehicles.passengers}</p>
-			</div>
-		);
+		vehiclesCard();
+	}
+
+	function personCard(){
+		person = people.map(person => {
+			return (
+				<div className="cardHeader" key={person.name}>
+					<button className="fab fa-rebel active" onClick={props.favoritesBtn} />
+					<h2>{person.name}</h2>
+					<p>{person.homeworld}</p>
+					<p>{person.species}</p>
+					<p>{person.population}</p>
+				</div>
+			);
+		});
+	}
+
+	function planetsCard(){
+		planet = planets.map(planet => {
+			return (
+				<div className="cardHeader" key={planet.name}>
+					<button className="fab fa-rebel active" onClick={props.favoritesBtn} />
+					<h2>{planet.name}</h2>
+					<p>{planet.terrain}</p>
+					<p>{planet.population}</p>
+					<p>{planet.climate}</p>
+					<p>{planet.residents}</p>
+				</div>
+			);
+		});
+	}
+
+	function vehiclesCard(){
+		vehicle = vehicles.map(vehicle => {
+			return (
+				<div className="cardHeader" key={vehicle.name}>
+					<button className="fab fa-rebel active" role="button" onClick={props.favoritesBtn} />
+					<h2>{vehicle.name}</h2>
+					<p>{vehicle.model}</p>
+					<p>{vehicle.vehicle_class}</p>
+					<p>{vehicle.passengers}</p>
+				</div>
+			);
+		});
 	}
 
 	return (
 		<div>
-			{people} {planets} {vehicles}
+			{person} {planet} {vehicle}
 		</div>
 	);
 };

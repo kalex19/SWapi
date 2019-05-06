@@ -14,17 +14,18 @@ const CardContainer = props => {
 			planets={props.planets}
 			vehicles={props.vehicles}
 			count={props.count}
+			favoritesBtn={props.favoritesBtn}
 		/>
 	);
 
-	if (props.count === 0) {
+	if (props.category === null && props.count === 0) {
 		errorMessage = <ErrorMessage />;
 	}
 
 	return (
 		<main>
-			<ScrollText film={props.film} />
 			{errorMessage}
+			<ScrollText film={props.film} />
 			{cards}
 		</main>
 	);

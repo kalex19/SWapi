@@ -26,10 +26,10 @@ export default class ScrollText extends Component {
 		let movieReleaseDate = this.state.film.release_date;
 
 		return (
-			<div>
-				<p>{scrollText}</p>
-				<p>{movieTitle}</p>
-				<p>{movieReleaseDate}</p>
+			<div className="scrollContainer">
+				<p className="scrollText">{scrollText}</p>
+				<p className="scrollText">{movieTitle}</p>
+				<p className="scrollText">{movieReleaseDate}</p>
 			</div>
 		);
 	}
