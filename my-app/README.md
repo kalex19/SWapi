@@ -61,7 +61,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### Cards
 
-![cards](src/Images/Cards.png "Cards")
+![cards](src/Images/background.jpg "Cards")
 
 
 ### WireFrame
