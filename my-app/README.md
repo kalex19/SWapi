@@ -34,7 +34,7 @@ Due to factors outisde of the program, my time for completion was limited and th
 * NPM
 * ESLint
 
-## To Enjoy This Game:
+## To View This Site:
 
 Fork this repo. 
 
