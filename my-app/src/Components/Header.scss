@@ -6,22 +6,21 @@
 }
 
 .title {
-  font-size: 5em;
-  text-align: center;
   color: $main-color;
-  text-shadow: $main-shadow 2px 1px;
+  font-size: 5em;
   margin: 16px;
+  text-align: center;
+  text-shadow: $main-shadow 2px 1px;
 }
 
-
 .favBtn {
-  background-color: gold;
-  text-align: center;
-  border: 2px white solid;
+  background-color: $main-shadow;
+  border: 2px $main-color solid;
   color: #000;
-  width: 19%;
-  height: 50px;
+  font-size: 1em;
+  height: 30px;
   margin-top: 6%;
-  font-size: 1.5em;
   opacity: 0.8;
+  text-align: center;
+  width: 19%;
 }

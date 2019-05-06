@@ -1,11 +1,11 @@
 @import '../variables.scss';
 
 .errorContainer {
-  text-shadow: $main-shadow 1px 1px;
   display: flex;
   justify-content: space-evenly;
-  margin: 3% 0;
   line-height: 30px;
+  margin: 3% 0;
+  text-shadow: $main-shadow 1px 1px;
 }
 
 .errorContainer p {

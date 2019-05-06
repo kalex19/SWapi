@@ -1,17 +1,16 @@
 @import '../variables.scss';
 
 .scrollContainer {
-  background-color: black;
-  padding: 3%;
+  background-color: $main-text;
   margin: 2%;
-  animation: slideup 3s linear 1s infinite running;
+  padding: 3%;
 }
 
 .scrollText {
-  text-shadow: 0 0 20px #50ffff, 1px 1px 30px #cea7d0, 2px 2px 30px #4effff, -1px -1px 30px #ad9fca, -2px -2px 30px #feeaac;
-  color: $main-shadow;
   animation: bounceIn 2s;
+  color: $main-shadow;
   pointer-events: none;
+  text-shadow: 0 0 20px #50ffff, 1px 1px 30px #cea7d0, 2px 2px 30px #4effff, -1px -1px 30px #ad9fca, -2px -2px 30px #feeaac;
 }
 
 @keyframes bounceIn {

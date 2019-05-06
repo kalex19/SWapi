@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './Header';
 import Controls from './Controls';
 import CardContainer from './CardContainer';
+import PropTypes from 'prop-types';
 import { fetchPeople } from './apiCalls';
 import { fetchPlanets } from './apiCalls';
 import { fetchVehicles } from './apiCalls';
@@ -14,7 +15,9 @@ export default class App extends Component {
 		planets: [],
 		vehicles: [],
 		favoriteCount: 0,
-		favorites: []
+		favoriteActive: false,
+		favorites: [],
+		error: ''
 	};
 
 	handleClick = e => {
@@ -103,15 +106,14 @@ export default class App extends Component {
 		}
 	};
 
-	favoritesBtn = e => {
-		if (e) {
-			this.setState = {
-				favoriteCount: this.state.favoriteCount + 1
-			};
-		}
+	favoritesBtn = () => {
+		let { favoriteCount } = this.state;
+		let { favoriteActive } = this.state;
+		this.setState = {
+			favoriteCount: favoriteCount + 1,
+			favoriteActive: !favoriteActive
+		};
 	};
-
-	//local storage
 
 	render() {
 		return (
@@ -123,11 +125,23 @@ export default class App extends Component {
 					category={this.state.category}
 					count={this.state.favoriteCount}
 					favoritesBtn={this.favoritesBtn}
+					active={this.favoriteActive}
 					people={this.state.people}
 					planets={this.state.planets}
 					vehicles={this.state.vehicles}
+					error={this.state.error}
 				/>
 			</div>
 		);
 	}
 }
+
+App.propTypes = {
+	category: PropTypes.string,
+	people: PropTypes.array,
+	planets: PropTypes.array,
+	vehicles: PropTypes.array,
+	favoriteCount: PropTypes.number,
+	favorites: PropTypes.array,
+	favoriteActive: PropTypes.bool
+};

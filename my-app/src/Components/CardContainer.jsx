@@ -15,6 +15,7 @@ const CardContainer = props => {
 			vehicles={props.vehicles}
 			count={props.count}
 			favoritesBtn={props.favoritesBtn}
+			active={props.active}
 		/>
 	);
 
@@ -25,20 +26,21 @@ const CardContainer = props => {
 	return (
 		<main>
 			{errorMessage}
-			<ScrollText film={props.film} />
+			<ScrollText film={props.film} error={props.error} />
 			{cards}
 		</main>
 	);
 };
-
-/* displayed while other data is loading ? ? goes away and cards are displayed if no favorites.... */
-
-export default CardContainer;
 
 CardContainer.propTypes = {
 	film: PropTypes.object,
 	people: PropTypes.array,
 	planets: PropTypes.array,
 	vehicles: PropTypes.array,
-	category: PropTypes.string
+	category: PropTypes.string,
+	count: PropTypes.number,
+	favoritesBtn: PropTypes.func,
+	active: PropTypes.bool
 };
+
+export default CardContainer;

@@ -66,25 +66,18 @@ const Card = props => {
 	}
 
 	return (
-		<div>
+		<div className="cardContainer">
 			{person} {planet} {vehicle}
 		</div>
 	);
 };
 
-export default Card;
+Card.propTypes = {
+	category: PropTypes.string,
+	people: PropTypes.array,
+	planets: PropTypes.array,
+	vehicles: PropTypes.array,
+	favoriotesBtn: PropTypes.func
+};
 
-// Card.propTypes = {
-// 	people.name: PropTypes.string,
-// 	people.homeworld: PropTypes.string,
-// 	people.species: PropTypes.string,
-// 	people.population: PropTypes.string,
-// 	planets.name: PropTypes.string,
-// 	planets.terrain: PropTypes.string,
-// 	planets.population: PropTypes.string,
-// 	planets.climate: PropTypes.string,
-// 	vehicles.name: PropTypes.string,
-// 	vehicles.model: PropTypes.string,
-// 	vehicles.vehucle_class: PropTypes.string,
-// 	vehicle.passengers: PropTypes.string
-// };
+export default Card;

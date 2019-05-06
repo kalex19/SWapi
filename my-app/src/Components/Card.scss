@@ -1,35 +1,36 @@
 @import '../variables.scss';
 
 .cardContainer {
-  display: inline;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .cardHeader {
-  display: inline-grid;
+  background-color: $main-text;
+  border: solid 4px $main-shadow;
+  color: $main-color;
+  height: auto;
   margin: 2%;
-  border: solid 4px #ffd701;
   padding: 2%;
-  background-color: black;
-  color: white;
-  width: 18%;
-  height: 480px;
+  width: 21%;
 }
 
 .cardHeader button {
   height: 20px;
+  width: 100%;
 }
 
 .cardHeader h2 {
-  padding: 2%;
   margin: 3%;
+  padding: 2%;
 }
 
 .cardHeader p {
-  padding: 2%;
   margin: 3%;
+  padding: 2%;
 }
 
-
 .active:hover {
-  background-color: gold;
+  background-color: $main-shadow;
 }

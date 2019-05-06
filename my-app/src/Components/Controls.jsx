@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Controls.scss';
 
 const Controls = props => {
-	//filter functionality
-
 	return (
 		<div className="controls">
 			<input className="fas fa-jedi" name="people" value="People" type="button" onClick={props.handleClick} />
@@ -19,8 +18,8 @@ const Controls = props => {
 	);
 };
 
-export default Controls;
+Controls.propTypes = {
+	handlClick: PropTypes.func
+};
 
-// Controls.proptypes = {
-// 	//functionality
-// };
+export default Controls;

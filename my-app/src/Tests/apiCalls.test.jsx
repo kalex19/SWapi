@@ -4,56 +4,71 @@ import ReactDOM from 'react-dom';
 import apiCalls from '../src/apiCalls';
 
 describe('apiCalls', () => {
-	it('should ', () => {});
-
-	it('', () => {});
-
-	it('', () => {});
-});
-
-//should call fetch film with correct parameters
-//should call fetch results with correct parameters
-//should call fetch homeworld with correct parameters
-//should call fetch species with correct parameters
-//should call fetch pop of hw with correct parameters
-//should call fetch residents with correct parameters
-
-//should set error in state if did not fetch -- need to declare something in state to take message (errorStatus: '') -- might need this for each fetch?
-describe('App', () => {
 	let wrapper;
-	let mockEvent;
-	let mockHandleClick;
 
-	beforeEach(() => {
-		wrapper = shallow(() => {
-			<App />;
-		});
-		mockEvent = { preventDefault: jest.fn() };
-		mockHandleClick = jest.fn();
+	it('should fetch people ', async () => {
+		const expected = [
+			'swapit.co/api/people',
+			{
+				method: 'POST',
+				body: JSON.stringify({
+					people: people
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}
+		];
+
+		await expect(window.fetch).toHaveBeenCalledWith(...expected);
 	});
 
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<App />, div);
-		ReactDOM.unmountComponentAtNode(div);
+	it('sets the error in state if the fetch fails', async () => {
+		window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')));
+		await expect(wrapper.state('error')).toEqual('Error fetching resident names');
 	});
 
-	it('should mock snapshot', () => {
-		expect(wrapper).toMatchSnapshot();
+	it('should call fetchResidentName with the correct data when adding a new resident name ', async () => {
+		const expected = [
+			'swapit.co/api/planets',
+			{
+				method: 'POST',
+				body: JSON.stringify({
+					planets: planets
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}
+		];
+
+		await expect(window.fetch).toHaveBeenCalledWith(...expected);
 	});
 
-	it('should have default state', () => {
-		expect(wrapper.state()).toEqual({
-			category: null,
-			results: [],
-			favortiesCount: 0,
-			favorites: []
-		});
+	it('sets the error in state if the fetch fails', async () => {
+		window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')));
+		await expect(wrapper.state('error')).toEqual('Error fetching resident names');
 	});
 
-	it('should call handleClick and set state', async () => {
-		wrapper.setState({ category: mockEvent.value });
-		await wrapper.instance().handleClick(mockEvent);
-		expect(mockHandleClick).toHaveBeenCalled();
+	it('should call fetchResidentName with the correct data when adding a new resident name ', async () => {
+		const expected = [
+			'swapit.co/api/planet',
+			{
+				method: 'POST',
+				body: JSON.stringify({
+					vehicles: vehiclea
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			}
+		];
+
+		await expect(window.fetch).toHaveBeenCalledWith(...expected);
+	});
+
+	it('sets the error in state if the fetch fails', async () => {
+		window.fetch = jest.fn().mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')));
+		await expect(wrapper.state('error')).toEqual('Error fetching resident names');
 	});
 });

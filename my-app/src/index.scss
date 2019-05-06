@@ -1,17 +1,16 @@
 @import './variables.scss';
 
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 5%;
-  padding: 0;
-  font-family: 'Kanit', sans-serif;
-  background-image: url(Images/nathan-duck-1176326-unsplash.jpg);
-  color: $main-color;
+  background-color: $main-text;
+  background-image: url(Images/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: $main-text;
+  color: $main-color;
+  font-family: 'Kanit', sans-serif;
+  margin: 5%;
+  padding: 0;
 }

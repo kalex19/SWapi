@@ -10,13 +10,11 @@ configure({ adapter: new Adapter() });
 describe('Card', () => {
 	let wrapper;
 	let mockEvent;
-	let mockHandleClick;
+	let mockFavoriteBtn;
 
 	beforeEach(() => {
 		wrapper = shallow(<Card />);
-		mockEvent(() => {
-			preventDefault: jest.fn();
-		});
+		mockEvent = { preventDefault: jest.fn() };
 		mockHandleClick = jest.fn();
 	});
 
@@ -24,10 +22,8 @@ describe('Card', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	it('should call handleClick', async () => {
+	it('should call favoriteBtn', async () => {
 		await wrapper.instance().tohandleClick(mockEvent);
-		expect(mockHandleClick).toHaveBeenCalled();
+		expect(mockFavoriteBtn).toHaveBeenCalled();
 	});
-
-	it('', () => {});
 });
