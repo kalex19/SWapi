@@ -16,7 +16,8 @@ export default class App extends Component {
 		vehicles: [],
 		favoriteCount: 0,
 		favoriteActive: false,
-		favorites: []
+		favorites: [],
+		error: ''
 	};
 
 	handleClick = e => {
@@ -128,6 +129,7 @@ export default class App extends Component {
 					people={this.state.people}
 					planets={this.state.planets}
 					vehicles={this.state.vehicles}
+					error={this.state.error}
 				/>
 			</div>
 		);

@@ -17,8 +17,4 @@ describe('Header', () => {
 	it('should mock snapshot', () => {
 		expect(wrapper).toMatchSnapshot();
 	});
-
-	it('', () => {});
-
-	it('', () => {});
 });

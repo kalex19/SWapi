@@ -26,7 +26,7 @@ const CardContainer = props => {
 	return (
 		<main>
 			{errorMessage}
-			<ScrollText film={props.film} />
+			<ScrollText film={props.film} error={props.error} />
 			{cards}
 		</main>
 	);
