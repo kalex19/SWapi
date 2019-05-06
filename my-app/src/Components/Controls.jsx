@@ -6,9 +6,15 @@ const Controls = props => {
 
 	return (
 		<div className="controls">
-			<input name="people" value="People" type="button" onClick={props.handleClick} />
-			<input name="planets" value="Planets" type="button" onClick={props.handleClick} />
-			<input name="vehicles" value="Vehicles" type="button" onClick={props.handleClick} />
+			<input className="fas fa-jedi" name="people" value="People" type="button" onClick={props.handleClick} />
+			<input className="fas fa-globe" name="planets" value="Planets" type="button" onClick={props.handleClick} />
+			<input
+				className="fas fa-space-shuttle"
+				name="vehicles"
+				value="Vehicles"
+				type="button"
+				onClick={props.handleClick}
+			/>
 		</div>
 	);
 };

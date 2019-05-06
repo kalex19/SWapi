@@ -7,7 +7,7 @@ const Header = props => {
 		<div className="header">
 			<h1 className="title"> SWapi-Box </h1>
 			<p className="favBtn" role="button">
-				View {props.favoriteCount} Favorites
+				View Favorites ({props.favoriteCount})
 			</p>
 		</div>
 	);

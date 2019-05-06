@@ -55,7 +55,7 @@ const Card = props => {
 		vehicle = vehicles.map(vehicle => {
 			return (
 				<div className="cardHeader" key={vehicle.name}>
-					<button className="fab fa-rebel active" onClick={props.favoritesBtn} />
+					<button className="fab fa-rebel active" role="button" onClick={props.favoritesBtn} />
 					<h2>{vehicle.name}</h2>
 					<p>{vehicle.model}</p>
 					<p>{vehicle.vehicle_class}</p>
