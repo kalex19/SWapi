@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
-import Styles from './ErrorMessage.scss';
+import './ErrorMessage.scss';
 
-const ErrorMessage = props => {
-	// let loading;
-
+const ErrorMessage = () => {
 	return (
 		<div className="errorContainer">
-			<h1>Please Select A Category</h1>
+			<h1>Select A Category</h1>
 			<p>No Favorites Available</p>
 		</div>
 	);
 };
-
-//ErrorMessage.propTypes = {
-//functions
-
-//}
 
 export default ErrorMessage;
