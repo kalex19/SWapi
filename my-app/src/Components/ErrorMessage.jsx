@@ -6,7 +6,7 @@ const ErrorMessage = props => {
 
 	let favorites;
 	// let loading;
-	console.log('favorites', props.favorites);
+
 	if (props.favoriteCount === 0) {
 		favorites = (
 			<div>
