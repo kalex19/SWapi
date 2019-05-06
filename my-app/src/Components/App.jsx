@@ -22,43 +22,53 @@ export default class App extends Component {
 		});
 	};
 
-	fetchResults = () => {
-		let results = this.state.category;
-		const resultsUrl = `https://swapi.co/api/${results}`;
-		fetch(resultsUrl)
+	fetchResults() {
+		if (this.state.category === 'People') {
+			this.fetchPeople();
+		}
+		if (this.state.category === 'Planets') {
+			this.fetchPlanets();
+		}
+		if (this.state.category === 'Vehicles') {
+			this.fetchVehicles();
+		}
+	}
+
+	fetchPeople = () => {
+		const url = `https://swapi.co/api/people`;
+		fetch(url)
 			.then(response => response.json())
 			.then(results =>
-				this.setState({ results: results.results }, () => {
-					console.log(this.state.results);
+				this.setState({ people: results.people }, () => {
+					console.log(this.state.people);
 				})
 			)
 			.catch(error => console.log(error));
 	};
 
-	// fetchHomeworld() {
-	// 	const url = { homeworld };
-	// 	fetch(url)
-	// 		.then(response => response.json())
-	// 		.then(results => console.log(results))
-	// 		.catch(error => console.log(error));
-	// }
+	fetchPlanets = () => {
+		const url = `https://swapi.co/api/planet`;
+		fetch(url)
+			.then(response => response.json())
+			.then(results =>
+				this.setState({ planets: results.planet }, () => {
+					console.log(this.state.planet);
+				})
+			)
+			.catch(error => console.log(error));
+	};
 
-	// fetchHomeworld() {
-	// 	const url = { species };
-	// 	fetch(url)
-	// 		.then(response => response.json())
-	// 		.then(results => console.log(results))
-	// 		.catch(error => console.log(error));
-	// }
-
-	// fetchHomeworld() {
-	// 	const url = { residents };
-	// 	fetch(url)
-	// 		.then(response => response.json())
-	// 		.then(results => console.log(results))
-	// 		.catch(error => console.log(error));
-	// }
-
+	fetchVehicles = () => {
+		const url = `https://swapi.co/api/vehicles`;
+		fetch(url)
+			.then(response => response.json())
+			.then(results =>
+				this.setState({ vehicles: results.vehicles }, () => {
+					console.log(this.state.vehicles);
+				})
+			)
+			.catch(error => console.log(error));
+	};
 	//local storage
 
 	render() {
@@ -66,7 +76,14 @@ export default class App extends Component {
 			<div className="App">
 				<Header favoriteCount={this.state.favoriteCount} />
 				<Controls handleClick={this.handleClick} />
-				<CardContainer results={this.state.results} category={this.state.category} count={this.state.favoriteCount} />
+				<CardContainer
+					results={this.state.results}
+					category={this.state.category}
+					count={this.state.favoriteCount}
+					people={this.state.people}
+					planets={this.state.planets}
+					vehicles={this.state.vehicles}
+				/>
 			</div>
 		);
 	}
