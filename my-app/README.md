@@ -57,16 +57,16 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### Home Page
 
-![alt text](src/Images/Homepage.png "Home Page")
+![home page](src/Images/Homepage.png "Home Page")
 
 ### Cards
 
-![alt text](src/Images/Cards.png "Cards")
+![cards](src/Images/Cards.png "Cards")
 
 
 ### WireFrame
 
-![alt text](src/Images/wireframe.JPG "WireFrame")
+![wireframe](src/Images/wireframe.JPG "WireFrame")
 
 ### Mobile View
 
